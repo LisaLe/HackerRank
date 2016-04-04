@@ -1,0 +1,80 @@
+/*
+
+Given a square matrix of size N×NN×N,
+calculate the absolute difference between
+the sums of its diagonals.
+
+Input Format
+The first line contains a single integer, NN.
+The next NN lines denote the matrix's rows, with each
+line containing NN space-separated integers describing the columns.
+
+3
+11 2 4
+4 5 6
+10 8 -12
+
+Explanation
+
+The primary diagonal is:
+11
+      5
+            -12
+
+Sum across the primary diagonal: 11 + 5 - 12 = 4
+
+The secondary diagonal is:
+            4
+      5
+10
+Sum across the secondary diagonal: 4 + 5 + 10 = 19
+Difference: |4 - 19| = 15
+*/
+
+
+
+process.stdin.resume();
+process.stdin.setEncoding('ascii');
+
+var input_stdin = "";
+var input_stdin_array = "";
+var input_currentline = 0;
+
+process.stdin.on('data', function (data) {
+    input_stdin += data;
+});
+
+process.stdin.on('end', function () {
+    input_stdin_array = input_stdin.split("\n");
+    main();
+});
+
+function readLine() {
+    return input_stdin_array[input_currentline++];
+}
+
+/////////////// ignore above this line ////////////////////
+
+function main() {
+    var n = parseInt(readLine());
+    var a = [];
+    var d1 =0;
+    var d2 =0;
+    for(a_i = 0; a_i < n; a_i++){
+       a[a_i] = readLine().split(' ');
+       a[a_i] = a[a_i].map(Number);
+
+        for(a_j = 0; a_j < n; a_j++){
+
+            if(a_i==a_j)
+                d1+=a[a_i][a_i];
+            if(a_i==n-a_j-1)
+                d2+=a[a_i][a_j];
+        }
+
+    }
+
+    console.log(Math.abs(d1-d2));
+
+
+}
